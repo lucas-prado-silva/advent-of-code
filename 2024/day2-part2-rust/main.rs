@@ -26,25 +26,20 @@ fn input_generator(input: &str) -> Vec<Vec<isize>> {
 }
 
 fn is_any_report_variation_safe(report: Vec<isize>) -> bool {
-    println!("original is {:?}", report);
     for i in 0..report.len() {
         let mut mutated_report = report.clone();
         mutated_report.remove(i);
 
 
-        println!("mutation {:?}", mutated_report);
         if is_report_safe(&mutated_report) {
-            // println!("mutated report is safe");
             return true;
         }
     }
 
-    println!("no mutated reports are safe. original is {:?}", report);
     false
 }
 
 fn is_report_safe(report: &Vec<isize>) -> bool {
-    // println!("checking report {:?}", report);
     if report.len() == 0 {
         return false;
     }
@@ -64,17 +59,14 @@ fn is_report_safe(report: &Vec<isize>) -> bool {
         let difference = level - previous_level;
         if is_incrementing {
             if difference <= 0 || difference > 3 {
-                // println!("report is unsafe\n");
                 return false;
             }
         } else {
             if difference >= 0 || difference < -3 {
-                // println!("report is unsafe\n");
                 return false;
             }
         }
     }
 
-    // println!("report is safe\n");
     true
 }
